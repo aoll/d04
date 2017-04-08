@@ -19,7 +19,6 @@ def test():
     print('hello')
 
 def ex02(request):
-    t = test
     if (request.method == 'POST'):
         form = Form.MyForm(request.POST)
         if form.is_valid():
@@ -31,7 +30,7 @@ def ex02(request):
                 for line in filecontent:
                     content.append(line)
 
-            return render(request, 'ex02/form.html', {'form':form,'list_logs': content, 'callback':t })
+            return render(request, 'ex02/form.html', {'form':form,'list_logs': content})
     else:
         content = []
         with open('ex02/ex02.logs', 'r') as filecontent:
@@ -40,4 +39,4 @@ def ex02(request):
         form = Form.MyForm()
 
 
-    return render(request, 'ex02/form.html', {'form':form, 'list_logs': content, 'callback':t })
+    return render(request, 'ex02/form.html', {'form':form, 'list_logs': content})
